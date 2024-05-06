@@ -5,7 +5,7 @@ function randomEmoji() {
 }
 
 const emoji = randomEmoji();
-const name = prompt("What's your name?");
+const name = "Anonymous";
 
 if (!location.hash) {
   location.hash = Math.floor(Math.random() * 0xFFFFFF).toString(16);
