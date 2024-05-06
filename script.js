@@ -5,16 +5,14 @@ function randomEmoji() {
 }
 
 const emoji = randomEmoji();
-const name = "Anonymous";
+const name = prompt("Enter your display name:");
 
 if (!location.hash) {
   location.hash = Math.floor(Math.random() * 0xFFFFFF).toString(16);
 }
 const chatHash = location.hash.substring(1);
 
-// Generic 3rd party signalling server
 const drone = new ScaleDrone('yiS12Ts5RdNhebyM');
-// roomName prefixed with 'observable-'
 const roomName = 'observable-' + chatHash;
 let room;
 
@@ -23,9 +21,7 @@ const configuration = {
     url: 'stun:stun.l.google.com:19302'
   }]
 };
-// RTCPeerConnection
 let pc;
-// RTCDataChannel
 let dataChannel;
 
 drone.on('open', error => {
@@ -84,7 +80,6 @@ function startWebRTC(isOfferer) {
 
 function startListentingToSignals() {
   room.on('data', (message, client) => {
-    // Message was sent by us
     if (client.id === drone.clientId) {
       return;
     }
@@ -163,4 +158,4 @@ form.addEventListener('submit', () => {
   insertMessageToDOM(data, true);
 });
 
-insertMessageToDOM({content: location.href});
+insertMessageToDOM({content: '[ROOM LINK]\n' + location.href});
