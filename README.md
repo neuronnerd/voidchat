@@ -1,4 +1,4 @@
-# Void Chat v1
+# Void Chat
 
  - Simple Implementation using a third party signaling server
 
